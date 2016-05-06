@@ -21,8 +21,14 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope, $location, Auth, FURL, Utils) {
   $scope.settings = {
     enableFriends: true
   };
+  
+  $scope.logOut = function () { 
+    Auth.logout();
+    $location.path("/login")
+  }
 });
+

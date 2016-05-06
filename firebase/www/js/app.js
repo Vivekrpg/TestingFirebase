@@ -68,6 +68,7 @@ $stateProvider
     url: '/account',
     views: {
       'tab-account': {
+        //templateUrl: 'views/home/home.html',
         templateUrl: 'views/templates/tab-account.html',
         controller: 'AccountCtrl'
       }

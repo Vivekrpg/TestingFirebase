@@ -1,11 +1,12 @@
-<ion-view view-title="Account">
-  <ion-content>
+<ion-view view-title="Account" hide-back-button="true">
+  <ion-content class="padding-top">
     <ion-list>
     <ion-toggle  ng-model="settings.enableFriends">
         Enable Friends
     </ion-toggle>
-    </ion-list>
+    </ion-list> 
+    <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
   </ion-content>
 </ion-view>
-<button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
+
 
