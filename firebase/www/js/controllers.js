@@ -9,11 +9,14 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('levelCtrl', function($scope, Levels) {
+.controller('levelCtrl', function($scope, $stateParams, Levels, Sports) {
   $scope.level_list = Levels.all();
-  $scope.remove = function(level) { 
-    level_list.remove(level);
-  };
+  $scope.sport = Sports.get($stateParams.sportid)
+})
+
+.controller('videolistCtrl', function($scope,$stateParams,Levels, Sports) {
+  $scope.sport = Sports.get($stateParams.sportid)
+  $scope.level = Levels.get($stateParams.levelid)
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -24,7 +27,6 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);

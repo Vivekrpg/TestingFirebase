@@ -79,22 +79,29 @@ $stateProvider
     url: '/video',
     views: {
       'tab-video': {
-        //templateUrl: 'views/home/home.html',
         templateUrl: 'views/templates/tab-video.html',
         controller: 'VideoCtrl'
       }
     }
   })
     .state('tab.level', {
-      url: '/video/:sportname',
+      url: '/video/:sportid',
       views: {
         'tab-video': {
-          //templateUrl: 'views/home/home.html',
           templateUrl: 'views/templates/tab-level.html',
           controller: 'levelCtrl'
         }
       }
-    });
+    })
+      .state('tab.videolist', {
+        url: '/video/:sportid/:levelid',
+        views: {
+          'tab-video': {
+            templateUrl: 'views/templates/tab-videolist.html',
+            controller: 'videolistCtrl'
+          }
+        }
+      });
 
 $urlRouterProvider.otherwise("/login");
 })

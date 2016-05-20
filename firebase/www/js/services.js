@@ -71,9 +71,6 @@ angular.module('starter.services', [])
     all: function() {
       return level_list;
     },
-    remove: function(level) {
-       level_list.splice(level_list.indexOf(level), 1);
-    },
     get: function(levelId) {
       for (var i = 0; i < level_list.length; i++) {
         if (level_list[i].id === parseInt(levelId)) {
