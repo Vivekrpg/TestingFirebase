@@ -73,7 +73,28 @@ $stateProvider
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+
+  .state('tab.video', {
+    url: '/video',
+    views: {
+      'tab-video': {
+        //templateUrl: 'views/home/home.html',
+        templateUrl: 'views/templates/tab-video.html',
+        controller: 'VideoCtrl'
+      }
+    }
+  })
+    .state('tab.level', {
+      url: '/video/:sportname',
+      views: {
+        'tab-video': {
+          //templateUrl: 'views/home/home.html',
+          templateUrl: 'views/templates/tab-level.html',
+          controller: 'levelCtrl'
+        }
+      }
+    });
 
 $urlRouterProvider.otherwise("/login");
 })

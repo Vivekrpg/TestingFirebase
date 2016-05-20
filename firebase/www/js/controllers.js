@@ -2,6 +2,20 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('VideoCtrl', function($scope, Sports) {
+  $scope.sports = Sports.all();
+  $scope.remove = function(sport) { 
+    Sports.remove(sport);
+  };
+})
+
+.controller('levelCtrl', function($scope, Levels) {
+  $scope.level_list = Levels.all();
+  $scope.remove = function(level) { 
+    level_list.remove(level);
+  };
+})
+
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -25,7 +39,7 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-  
+   
   $scope.logOut = function () { 
     Auth.logout();
     $location.path("/login")
