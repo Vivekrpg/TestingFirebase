@@ -82,10 +82,11 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Sports', function() {
+.factory('Sports', function(FURL, $firebaseArray) {
   // Might use a resource here that returns a JSON array
-
+ 
   // Some fake testing data
+  var ref = new Firebase(FURL);
   var sports = [{
     id: 0,
     name: 'Badminton',
@@ -105,7 +106,25 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
+/*         var ref = new Firebase(FURL);
+         var sports1 = [];
+         ref.orderByChild("sports").once("value", function(data) { 
+            var len = Object.keys(data.val().profile.sports).length;
+
+
+            console.log("length is equal to " + len);
+            for(i=0;i<len;i++) { 
+              sports1.push({id:i, name: data.val().profile.sports[i]})
+            }
+          //console.log(sports1);
+         });
+
+      //console.log(sports);
+      console.log(sports1);*/
       return sports;
+    },
+    temp: function() { 
+      return $firebaseArray(ref.child('profile/sports'));
     },
     remove: function(sport) {
       sports.splice(sports.indexOf(sport), 1);

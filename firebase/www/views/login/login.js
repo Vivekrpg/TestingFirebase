@@ -18,7 +18,7 @@ angular.module('App').controller('loginController', function ($scope, $state,$co
         obj.$loaded()
           .then(function(data) {
             //console.log(data === obj); // true
-            //console.log(obj.email);
+            //console.log(obj.email); 
             $localStorage.email = obj.email;
             $localStorage.userkey = userkey;
 

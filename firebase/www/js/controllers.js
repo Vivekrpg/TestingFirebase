@@ -2,8 +2,21 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('VideoCtrl', function($scope, Sports) {
-  $scope.sports = Sports.all();
+.controller('VideoCtrl', function($scope, $firebaseArray, Sports) {
+  //$scope.sports = Sports.all();
+  $scope.sports = Sports.temp();
+  
+  $scope.sports.$loaded().then(function() { 
+    console.log($scope.sports);
+    //console.log("length is " + $scope.sports1.length);  
+  })
+  .catch(function(error) {
+    console.error("Error:", error);
+  });
+  
+  //console.log($scope.sports);
+  //console.log("len is " + $scope.sports1.length());
+  //console.log($scope.sports1.$indexFor('badminton'));
   $scope.remove = function(sport) { 
     Sports.remove(sport);
   };

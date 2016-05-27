@@ -4,8 +4,8 @@
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <h1> Choose Sport</h1>
       <ion-list>
-        <ion-item ng-controller="VideoCtrl" ng-repeat="sport in sports" href="#/tab/video/{{sport.id}}">
-          <h2>{{sport.name}} </h2>
+        <ion-item ng-controller="VideoCtrl" ng-repeat="sport in sports" href="#/tab/video/{{sport.$id}}">
+          <h2>{{sport.$value}} </h2>
         </ion-item>
       </ion-list>
 
