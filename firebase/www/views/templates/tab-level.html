@@ -1,8 +1,8 @@
 <ion-view view-title="Choose your level">
   <ion-content class="padding scroll-content ionic-scroll  has-header has-tabs">
       <ion-list>
-        <ion-item ng-controller="levelCtrl" ng-repeat="level in level_list" href="#/tab/video/{{sport.id}}/{{level.id}}">
-          <h2>{{level.name}} </h2>
+        <ion-item ng-controller="levelCtrl" ng-repeat="level in level_list" href="#/tab/video/{{sport.$id}}/{{level.$id}}">
+          <h2>{{level.$value}} </h2>
         </ion-item>
       </ion-list>
   </ion-content>

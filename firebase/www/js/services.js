@@ -49,31 +49,24 @@ angular.module('starter.services', [])
   };
 })
 
-.factory('Levels', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var level_list = [{
-    id: 0,
-    name: 'Novice',
-  }, {
-    id: 1,
-    name: 'Beginner',
-  }, {
-    id: 2,
-    name: 'Intermediate',
-  }, {
-    id: 3,
-    name: 'Advanced',
-  }];
+.factory('Levels', function(FURL, $firebaseArray) {
+  var ref = new Firebase(FURL);
+  var levels_fact;
 
   return {
     all: function() {
-      return level_list;
+      //return level_list;
+      return $firebaseArray(ref.child('profile/Levels'));
     },
-    get: function(levelId) {
+    write_var: function(levels) { 
+      levels_fact = levels;
+    },
+    get_var: function() { 
+      return levels_fact;
+    },
+    get: function(levelId,level_list) {
       for (var i = 0; i < level_list.length; i++) {
-        if (level_list[i].id === parseInt(levelId)) {
+        if (parseInt(level_list[i].$id) === parseInt(levelId)) {
           return level_list[i];
         }
       }
@@ -83,30 +76,12 @@ angular.module('starter.services', [])
 })
 
 .factory('Sports', function(FURL, $firebaseArray) {
-  // Might use a resource here that returns a JSON array
- 
-  // Some fake testing data
   var ref = new Firebase(FURL);
-  var sports = [{
-    id: 0,
-    name: 'Badminton',
-  }, {
-    id: 1,
-    name: 'Basketball',
-  }, {
-    id: 2,
-    name: 'Volleyball',
-  }, {
-    id: 3,
-    name: 'Ping-Pong',
-  }, {
-    id: 4,
-    name: 'Tennis',
-  }];
+  var sports_fact;
 
   return {
-    all: function() {
-/*         var ref = new Firebase(FURL);
+    all: function() { 
+      /* var ref = new Firebase(FURL);
          var sports1 = [];
          ref.orderByChild("sports").once("value", function(data) { 
             var len = Object.keys(data.val().profile.sports).length;
@@ -121,18 +96,21 @@ angular.module('starter.services', [])
 
       //console.log(sports);
       console.log(sports1);*/
-      return sports;
-    },
-    temp: function() { 
       return $firebaseArray(ref.child('profile/sports'));
     },
-    remove: function(sport) {
-      sports.splice(sports.indexOf(sport), 1);
+    write_var: function(sports) { 
+      sports_fact = sports; 
     },
-    get: function(sportId) {
+    get_var: function() {
+      return sports_fact; 
+    },
+    remove: function(sport) {
+      sports.splice(sports.indexOf(sport), 1); //TODO: this may not work as now we need to run $remove() on firebaseArray. Modify when needed
+    },
+    get: function(sportId,sports) {
       for (var i = 0; i < sports.length; i++) {
-        if (sports[i].id === parseInt(sportId)) {
-          return sports[i];
+        if (parseInt(sports[i].$id) === parseInt(sportId)) {
+          return sports[i]; //returning object instead of the name 
         }
       }
       return null;

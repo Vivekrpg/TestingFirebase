@@ -3,20 +3,13 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {})
 
 .controller('VideoCtrl', function($scope, $firebaseArray, Sports) {
-  //$scope.sports = Sports.all();
-  $scope.sports = Sports.temp();
-  
-  $scope.sports.$loaded().then(function() { 
-    console.log($scope.sports);
-    //console.log("length is " + $scope.sports1.length);  
+  $scope.sports = Sports.all();
+  $scope.sports.$loaded().then(function() {  
   })
   .catch(function(error) {
     console.error("Error:", error);
   });
-  
-  //console.log($scope.sports);
-  //console.log("len is " + $scope.sports1.length());
-  //console.log($scope.sports1.$indexFor('badminton'));
+  Sports.write_var($scope.sports);
   $scope.remove = function(sport) { 
     Sports.remove(sport);
   };
@@ -24,12 +17,21 @@ angular.module('starter.controllers', [])
 
 .controller('levelCtrl', function($scope, $stateParams, Levels, Sports) {
   $scope.level_list = Levels.all();
-  $scope.sport = Sports.get($stateParams.sportid)
+  $scope.level_list.$loaded().then(function() { 
+  })
+  .catch(function(error) { 
+    console.log("Error:", error);
+  });
+  Levels.write_var($scope.level_list);
+  $scope.sports = Sports.get_var();
+  $scope.sport = Sports.get($stateParams.sportid,$scope.sports);
 })
 
 .controller('videolistCtrl', function($scope,$stateParams,Levels, Sports) {
-  $scope.sport = Sports.get($stateParams.sportid)
-  $scope.level = Levels.get($stateParams.levelid)
+  $scope.sports = Sports.get_var();
+  $scope.levels = Levels.get_var();
+  $scope.sport = Sports.get($stateParams.sportid,$scope.sports);
+  $scope.level = Levels.get($stateParams.levelid, $scope.levels);
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
