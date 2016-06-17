@@ -1,6 +1,18 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, VideoUpload) {
+   // TODO: This controller is for uploading video - need to later move it at the right place 
+   //console.log("the value of videolink is ",$scope.videolink);
+   //
+   $scope.savevideo = function (videolink) { 
+     console.log($scope);
+     console.log("value is ", videolink);
+     VideoUpload.createvideo(videolink);
+   };
+   
+
+
+})
 
 .controller('VideoCtrl', function($scope, $firebaseArray, Sports) {
   $scope.sports = Sports.all();

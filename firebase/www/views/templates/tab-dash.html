@@ -1,5 +1,26 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
+    <form ng-submit="savevideo(videolink)">
+      <label>Video link:</label>
+      <input type="text" ng-model="videolink.url">
+
+      <label>coach:</label>
+      <input type="text" ng-model="videolink.coach">
+
+      <label>duration:</label>
+      <input type="text" ng-model="videolink.duration">
+
+      <label> Check one of these tags </label>
+        <ion-checkbox ng-checked="false" ng-model="videolink.tag1">tag1</ion-checkbox>
+        <ion-checkbox ng-checked="false" ng-model="videolink.tag2">tag2</ion-checkbox>
+        <ion-checkbox ng-checked="false" ng-model="videolink.tag3">tag3</ion-checkbox>
+      <button type="submit">Save Changes</button>
+    </form>
+    <p> value of link is {{videolink}} </p>
+    <!--
+
+<input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
+
     <h2>Welcome to Ionic</h2>
     <p>
     This is the Ionic starter for tabs-based apps. For other starters and ready-made templates, check out the <a href="http://market.ionic.io/starters" target="_blank">Ionic Market</a>.
@@ -12,6 +33,7 @@
     </p>
     <p>
       For help sending push notifications, join the <a href="https://apps.ionic.io/signup" target="_blank">Ionic Platform</a> and check out <a href="http://docs.ionic.io/docs/push-overview" target="_blank">Ionic Push</a>. We also have other services available.
-    </p>
+    </p> 
+    -->
   </ion-content>
 </ion-view>

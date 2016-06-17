@@ -1,5 +1,32 @@
 angular.module('starter.services', [])
 
+.factory('VideoUpload', function(FURL,$firebaseArray) { 
+  var ref = new Firebase(FURL);
+
+  return { 
+    createvideo: function(videolink) { 
+      console.log(videolink.tag1);
+      //console.log("value is ".videolink.tag1);
+      var tags=[];
+      if(videolink.tag1) { tags[0]=1;}
+      if(videolink.tag2) { tags[1]=1;}
+      if(videolink.tag3) { tags[2]=1;}
+      var video = {
+        url: videolink.url, 
+        coach: videolink.coach,
+        duration: videolink.duration,
+        tagvalues : tags,
+      };
+      var profileRef = $firebaseArray(ref.child('profile'));
+      return profileRef.$add(video).then(function(ref) {
+        var id = ref.key();
+        console.log("added record with id " + id);
+        profileRef.$indexFor(id); // returns location in the array
+      });
+    },
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
@@ -56,7 +83,7 @@ angular.module('starter.services', [])
   return {
     all: function() {
       //return level_list;
-      return $firebaseArray(ref.child('profile/Levels'));
+      return $firebaseArray(ref.child('profile/levels'));
     },
     write_var: function(levels) { 
       levels_fact = levels;
